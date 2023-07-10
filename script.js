@@ -82,7 +82,7 @@ function showMain(userNum) {
 }
 
 async function getData(q) {
-  var url = process.env.QUERY_URL + q;
+  var url = "https://php.flare.moe/jpdb/query.php?query=" + q;
   try {
     var response = await axios.get(url);
     return response.data;
@@ -99,7 +99,7 @@ function addTestRecord(userNum) {
     testRecord.removeChild(testRecord.firstChild);
   }
 
-  var url = process.env.QUERY_URL + "SELECT TEST_DATE AS test_date, WRONG AS wrong FROM TEST_RESULT WHERE USER_NUMBER = " + userNum + " ORDER BY TEST_DATE";
+  var url = "https://php.flare.moe/jpdb/query.php?query=" + "SELECT TEST_DATE AS test_date, WRONG AS wrong FROM TEST_RESULT WHERE USER_NUMBER = " + userNum + " ORDER BY TEST_DATE";
 
   // 시험 기록 추가 - Database 접근
   axios.get(url)
@@ -130,7 +130,7 @@ function addTestAgainButton(userNum) {
   }
 
   // 재시험 버튼 추가 - Database 접근 
-  var url = process.env.QUERY_URL + "SELECT * FROM WORDS WHERE USER_NUMBER = " + userNum + " ORDER BY NUMBER";
+  var url = "https://php.flare.moe/jpdb/query.php?query=" + "SELECT * FROM WORDS WHERE USER_NUMBER = " + userNum + " ORDER BY NUMBER";
   axios.get(url)
       .then(response => {
         // Process the response data
